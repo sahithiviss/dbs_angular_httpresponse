@@ -9,12 +9,16 @@ import { User } from '../User';
 })
 export class UsersComponent implements OnInit {
 
-  users:User[]=[];
+  users:Object;
   constructor(private userService:UserService) { }
 
   ngOnInit() {
-    this.users = this.userService.listUsers();
-  }
+    this.userService
+    .listUsers()
+    .subscribe(response =>{
+    console.log(response);
+  });
+}
 
   findById(id):User{
     return this.userService.findByUserId(id);
